@@ -156,28 +156,31 @@ export default function App() {
       : 'Кликните две точки: старт и финиш'
 
   return (
-    <div className="relative h-screen w-full overflow-hidden">
-      <GraphCanvas
-        nodes={nodes}
-        edges={edges}
-        cellR={cellR}
-        startId={startId}
-        endId={endId}
-        phase={phase}
-        plan={plan}
-        wave={wave}
-        scanStep={SCAN_STEP}
-        scanFlash={SCAN_FLASH}
-        view={view}
-        onViewChange={setView}
-        onSize={handleSize}
-        onNodeClick={handleNodeClick}
-      />
+    <div className="relative h-dvh w-full overflow-hidden">
+      <div className="h-full w-full pb-40 md:pb-0">
+        <GraphCanvas
+          nodes={nodes}
+          edges={edges}
+          cellR={cellR}
+          startId={startId}
+          endId={endId}
+          phase={phase}
+          plan={plan}
+          wave={wave}
+          scanStep={SCAN_STEP}
+          scanFlash={SCAN_FLASH}
+          view={view}
+          onViewChange={setView}
+          onSize={handleSize}
+          onNodeClick={handleNodeClick}
+        />
+      </div>
 
-      {/* плавающая панель управления */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center p-4 md:p-6">
-        <aside className="pointer-events-auto flex w-[248px] flex-col gap-3 rounded-3xl border border-slate-700/50 bg-slate-950/70 p-5">
-          <div className="flex flex-col gap-3">
+      {/* панель управления: на мобильных — компактная полоса снизу,
+          на десктопе — колонка сбоку */}
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex p-3 md:inset-y-0 md:left-auto md:right-0 md:items-center md:p-6">
+        <aside className="pointer-events-auto w-full rounded-2xl border border-slate-700/50 bg-slate-950/80 p-3 md:w-[248px] md:rounded-3xl md:p-5">
+          <div className="grid grid-cols-2 gap-2 md:grid-cols-1 md:gap-3">
             <NeonButton tone="cyan" onClick={handleSetDistance}>
               Задать расстояние
             </NeonButton>
@@ -193,7 +196,7 @@ export default function App() {
           </div>
 
           {plan?.found && (
-            <div className="rounded-xl border border-slate-700/50 bg-slate-900/40 px-3 py-2 text-center text-[11px] leading-snug text-slate-400">
+            <div className="mt-2 rounded-xl border border-slate-700/50 bg-slate-900/40 px-3 py-2 text-center text-[11px] leading-snug text-slate-400 md:mt-3">
               {status}
             </div>
           )}
@@ -217,7 +220,7 @@ function NeonButton({ children, onClick, tone = 'cyan', disabled }) {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`rounded-xl border bg-slate-900/40 px-4 py-3 text-sm font-semibold uppercase tracking-wider transition-all duration-300 ${tones[tone]} disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:shadow-none`}
+      className={`rounded-xl border bg-slate-900/40 px-2 py-3 text-center text-xs font-semibold uppercase leading-tight tracking-wide transition-all duration-300 md:px-4 md:py-3 md:text-sm md:tracking-wider ${tones[tone]} disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-transparent disabled:hover:shadow-none`}
     >
       {children}
     </button>
