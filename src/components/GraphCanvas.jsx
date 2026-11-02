@@ -5,8 +5,10 @@ function polyPoints(pts) {
   return pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' ')
 }
 
-// зум вокруг точки (cx, cy) в координатах viewBox
-function zoomAt(view, factor, cx, cy, min = 0.12, max = 4) {
+// зум вокруг точки (cx, cy) в координатах viewBox.
+// min подобран так, чтобы начальный подгоночный масштаб (≈0.05 для всего
+// поля) был выше предела — иначе первое касание «перескакивало» ближе.
+function zoomAt(view, factor, cx, cy, min = 0.02, max = 4) {
   const k = Math.min(max, Math.max(min, view.k * factor))
   const real = k / view.k
   return {

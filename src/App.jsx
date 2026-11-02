@@ -157,7 +157,7 @@ export default function App() {
 
   return (
     <div className="relative h-dvh w-full overflow-hidden">
-      <div className="h-full w-full pb-40 md:pb-0">
+      <div className="h-full w-full pb-44 md:pb-0">
         <GraphCanvas
           nodes={nodes}
           edges={edges}
@@ -178,7 +178,7 @@ export default function App() {
 
       {/* панель управления: на мобильных — компактная полоса снизу,
           на десктопе — колонка сбоку */}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex p-3 md:inset-y-0 md:left-auto md:right-0 md:items-center md:p-6">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 flex p-3 pb-12 md:inset-y-0 md:left-auto md:right-0 md:items-center md:p-6">
         <aside className="pointer-events-auto w-full rounded-2xl border border-slate-700/50 bg-slate-950/80 p-3 md:w-[248px] md:rounded-3xl md:p-5">
           <div className="grid grid-cols-2 gap-2 md:grid-cols-1 md:gap-3">
             <NeonButton tone="cyan" onClick={handleSetDistance}>
